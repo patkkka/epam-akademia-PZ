@@ -3,6 +3,9 @@
  */
 public class RowCondition extends WinCondition {
 
+    public RowCondition() {
+    }
+
     @Override
     public boolean checkCondition(int x, int y, char currentChar, char[][] boardState) {
         int n = boardState[0].length;

@@ -3,6 +3,9 @@
  */
 public class ColumnCondition extends WinCondition{
 
+    public ColumnCondition() {
+    }
+
     @Override
     public boolean checkCondition(int x, int y, char currentChar, char[][] boardState) {
         int n = boardState.length;

@@ -2,6 +2,10 @@
  * Created by Patka on 2017-05-29.
  */
 public class AntiDiagCondition extends WinCondition {
+
+    public AntiDiagCondition() {
+    }
+
     @Override
     public boolean checkCondition(int x, int y, char currentChar, char[][] boardState) {
         int n = boardState.length;

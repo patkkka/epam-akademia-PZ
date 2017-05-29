@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Game {
     private Player currentPlayer;
     private Player winner;
 
-    private List<WinCondition> winConditions;
+    private List<WinCondition> winConditions = new ArrayList<WinCondition>();
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -44,14 +45,29 @@ public class Game {
     }
 
     public void play(){
-        while(true)
-        {
+        while(true){
+            System.out.println("Player " + currentPlayer.getGameChar() +
+                    " please insert integer x(row) and y(column) where you want to put your character");
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
 
+            currentPlayer.move(x,y,board);
+
+            board.printBoardState();
+
+            if (checkGameWon()){
+                System.out.println("Game finished!");
+                System.out.println("The winner is " + currentPlayer.getGameChar());
+                break;
+            }
+            if (checkGameTie()){
+                System.out.println("Game finished! Board is full. There is no winner.");
+            }
             currentPlayer = nextPlayer();
         }
     }
 
-    public boolean checkGameFinished(){
+    public boolean checkGameWon(){
         char currentChar = currentPlayer.getGameChar();
         char [][] boardState = board.getBoardState();
         int x = board.getLastMoveX();
@@ -64,6 +80,10 @@ public class Game {
             }
         }
         return false;
+    }
+
+    public boolean checkGameTie(){
+        return board.checkIfBoardFull();
     }
 
     public Player nextPlayer(){

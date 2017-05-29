@@ -3,6 +3,9 @@
  */
 public class DiagCondition extends WinCondition{
 
+    public DiagCondition() {
+    }
+
     @Override
     public boolean checkCondition(int x, int y, char currentChar, char[][] boardState) {
         int n = boardState.length;

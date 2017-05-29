@@ -49,4 +49,15 @@ public class Board {
     public int getLastMoveY() {
         return lastMoveY;
     }
+
+    public boolean checkIfBoardFull(){
+        for (int i=0; i < boardState.length; i++){
+            for (int j=0; j < boardState[0].length; j++) {
+                if (boardState[i][j] == empty){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
