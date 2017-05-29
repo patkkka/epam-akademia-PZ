@@ -46,8 +46,8 @@ public class Game {
             System.out.println("Player " + player2.getGameChar() + ": " + player2.getPoints());
 
             System.out.println("Do you want to play once again? Y/N");
-            String input = scanner.nextLine();
-            if (input == "Y"){
+            String decision = scanner.nextLine();
+            if (decision == "Y"){
                 continue;
             } else {
                 break;
@@ -73,21 +73,25 @@ public class Game {
             int x = scanner.nextInt();
             int y = scanner.nextInt();
 
-            currentPlayer.move(x,y,board);
+            if (currentPlayer.move(x,y,board)) {
+            // available move
+                board.printBoardState();
 
-            board.printBoardState();
-
-            if (checkGameWon()){
-                System.out.println("Game finished!");
-                System.out.println("The winner is " + currentPlayer.getGameChar());
-                currentPlayer.addPoint();
-                break;
+                if (checkGameWon()) {
+                    System.out.println("Game finished!");
+                    System.out.println("The winner is " + currentPlayer.getGameChar());
+                    currentPlayer.addPoint();
+                    break;
+                }
+                if (checkGameTie()) {
+                    System.out.println("Game finished! Board is full. There is no winner.");
+                    break;
+                }
+                currentPlayer = nextPlayer();
+            } else
+            {
+                System.out.println("This field is not empty!");
             }
-            if (checkGameTie()){
-                System.out.println("Game finished! Board is full. There is no winner.");
-                break;
-            }
-            currentPlayer = nextPlayer();
         }
     }
 
