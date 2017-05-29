@@ -33,6 +33,28 @@ public class Game {
         winConditions.add(adiagCondition);
     }
 
+    public void play(){
+        while(true){
+            playOneGame();
+            Player leader = checkWhoIsWinning();
+            if (leader == null){
+                System.out.println("Draw.");
+            } else {
+                System.out.println("Player " + leader.getGameChar() + " is leading.");
+            }
+            System.out.println("Player " + player1.getGameChar() + ": " + player1.getPoints());
+            System.out.println("Player " + player2.getGameChar() + ": " + player2.getPoints());
+
+            System.out.println("Do you want to play once again? Y/N");
+            String input = scanner.nextLine();
+            if (input == "Y"){
+                continue;
+            } else {
+                break;
+            }
+        }
+    }
+
     public void start(){
         System.out.println("Who goes first? X or O");
         String input = scanner.nextLine();
@@ -44,10 +66,10 @@ public class Game {
         }
     }
 
-    public void play(){
+    public void playOneGame(){
         while(true){
-            System.out.println("Player " + currentPlayer.getGameChar() +
-                    " please insert integer x(row) and y(column) where you want to put your character");
+            System.out.println("Player " + currentPlayer.getGameChar() + " turn: " +
+                    " \nPlease insert row and column values, where you want to put your character (separated by space) and press Enter");
             int x = scanner.nextInt();
             int y = scanner.nextInt();
 
@@ -58,10 +80,12 @@ public class Game {
             if (checkGameWon()){
                 System.out.println("Game finished!");
                 System.out.println("The winner is " + currentPlayer.getGameChar());
+                currentPlayer.addPoint();
                 break;
             }
             if (checkGameTie()){
                 System.out.println("Game finished! Board is full. There is no winner.");
+                break;
             }
             currentPlayer = nextPlayer();
         }
@@ -92,6 +116,16 @@ public class Game {
         }
         else {
             return player1;
+        }
+    }
+
+    public Player checkWhoIsWinning (){
+        if (player1.getPoints() > player2.getPoints()){
+            return player1;
+        } else if (player2.getPoints() > player1.getPoints()){
+            return player2;
+        } else {
+            return null;
         }
     }
 }

@@ -4,6 +4,7 @@
 public class Player {
     private String name;
     private char gameChar;
+    private int points;
 
     public Player(String name, char gameChar) {
         this.name = name;
@@ -14,6 +15,8 @@ public class Player {
         } else {
             throw new IllegalArgumentException("Player can use only specified game character");
         }
+
+        this.points = 0;
     }
 
     public boolean move(int x, int y, Board board){
@@ -26,5 +29,13 @@ public class Player {
 
     public char getGameChar() {
         return gameChar;
+    }
+
+    public void addPoint(){
+        this.points++;
+    }
+
+    public int getPoints() {
+        return points;
     }
 }
