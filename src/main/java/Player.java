@@ -16,7 +16,15 @@ public class Player {
         }
     }
 
-    public void move(int x, int y, Board board){
+    public boolean move(int x, int y, Board board){
+        if (board.getBoardChar(x,y) == Board.empty) {
+            board.addMove(x, y, this.gameChar);
+            return true;
+        }
+        return false;
+    }
 
+    public char getGameChar() {
+        return gameChar;
     }
 }

@@ -10,5 +10,8 @@ public class Main {
 
         Game game = new Game(player1, player2, board);
 
+     //   game.start();
+        board.printBoardState();
+
     }
 }
