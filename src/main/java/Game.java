@@ -47,9 +47,11 @@ public class Game {
 
             System.out.println("Do you want to play once again? Y/N");
             String decision = scanner.nextLine();
-            if (decision == "Y"){
+            if (decision.equals("Y")){
                 continue;
             } else {
+                System.out.println(decision);
+                System.out.println("XXXXXXXXXXXXx");
                 break;
             }
         }
